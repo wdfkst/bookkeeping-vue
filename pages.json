@@ -1,0 +1,94 @@
+{
+  "pages": [
+    {
+      "path": "pages/home/index",
+      "style": {
+        "navigationBarTitleText": "清新记账",
+        "navigationBarBackgroundColor": "#64CFB3",
+        "navigationBarTextStyle": "white",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/add/index",
+      "style": {
+        "navigationBarTitleText": "记一笔",
+        "navigationBarBackgroundColor": "#64CFB3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/list/index",
+      "style": {
+        "navigationBarTitleText": "流水",
+        "navigationBarBackgroundColor": "#64CFB3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/analysis/index",
+      "style": {
+        "navigationBarTitleText": "分析",
+        "navigationBarBackgroundColor": "#64CFB3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/settings/index",
+      "style": {
+        "navigationBarTitleText": "设置",
+        "navigationBarBackgroundColor": "#64CFB3",
+        "navigationBarTextStyle": "white"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "清新记账",
+    "navigationBarBackgroundColor": "#64CFB3",
+    "backgroundColor": "#F5F7FB",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#A2A4A5",
+    "selectedColor": "#64CFB3",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/home-active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/list/index",
+        "iconPath": "static/tabbar/list.png",
+        "selectedIconPath": "static/tabbar/list-active.png",
+        "text": "流水"
+      },
+      {
+        "pagePath": "pages/analysis/index",
+        "iconPath": "static/tabbar/chart.png",
+        "selectedIconPath": "static/tabbar/chart-active.png",
+        "text": "分析"
+      },
+      {
+        "pagePath": "pages/settings/index",
+        "iconPath": "static/tabbar/settings.png",
+        "selectedIconPath": "static/tabbar/settings-active.png",
+        "text": "设置"
+      }
+    ]
+  },
+  "condition": {
+    "current": 0,
+    "list": [
+      {
+        "name": "首页",
+        "path": "pages/home/index",
+        "query": ""
+      }
+    ]
+  }
+}

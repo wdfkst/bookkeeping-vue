@@ -1,0 +1,47 @@
+// SCSS 变量定义
+// 颜色变量
+$primary-color: #64CFB3;      // 薄荷绿
+$secondary-color: #6FD8D8;    // 青蓝色
+$accent-color: #ADA9E4;       // 淡紫色
+$expense-color: #E9A0A5;      // 支出色(珊瑚红)
+$income-color: #64CFB3;       // 收入色(薄荷绿)
+$warning-color: #F2D6A7;      // 金黄色
+$text-primary: #1F2324;       // 主要文字
+$text-secondary: #A2A4A5;     // 次要文字
+$text-light: #667085;         // 浅色文字
+$bg-color: #F5F7FB;           // 背景色
+$border-color: #EEF1F5;       // 边框色
+$white: #FFFFFF;
+
+// 渐变色
+$gradient-primary: linear-gradient(135deg, #{$primary-color}, #{$secondary-color});
+$gradient-expense: linear-gradient(135deg, #{$expense-color}, #{$warning-color});
+$gradient-income: linear-gradient(135deg, #{$primary-color}, #{$secondary-color});
+$gradient-accent: linear-gradient(135deg, #{$accent-color}, #{$secondary-color});
+
+// 阴影
+$shadow-card: 0 12px 28px rgba(16, 24, 40, 0.06);
+$shadow-light: 0 8px 20px rgba(16, 24, 40, 0.04);
+$shadow-fab: 0 18px 38px rgba(100, 207, 179, 0.45);
+
+// 圆角
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 18px;
+$radius-xl: 28px;
+
+// 字体大小
+$font-xs: 12px;
+$font-sm: 14px;
+$font-md: 16px;
+$font-lg: 18px;
+$font-xl: 24px;
+$font-xxl: 30px;
+
+// 间距
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+$spacing-xxl: 24px;

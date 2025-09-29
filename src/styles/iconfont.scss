@@ -1,0 +1,230 @@
+/* Iconfont CSS 图标库 - 记账应用专用 */
+@font-face {
+  font-family: 'iconfont';
+  src: url('data:application/font-woff2;charset=utf-8;base64,d09GMgABAAAAAAZoAAsAAAAADWAAAAYbAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHFQGYACEOAqSdJE6ATYCJAMwCxoABCAFhgwHgUYbrQxFBpxQfWnvzP3uXgAArqmqgXTdTZKJNxL1H8S1DcVGjVX7Ds9w44mJ2/KJvyCYQZXnrz36z99+z3mf/zlfFxERJ5DKCiKRhKKhpAaajV0rbZh4y2WzCqUlGHCQ4S8lc2DDBBYx3PuiEuFyVEiFpKJYSCWjU1FRjJBTRcdElPNLJa0ghFjJKJ5KRMVZQZ26+P+tuy0LvMILxfBCjVfXddcNzJgtG3fPdvMNwBAWUBKHRSqVJHNJEIFFLCVShICYRGCRSoVcKiQlg0tFLpUksyQTMklcKiSTqJAkLhWJZJJEOg==') format('woff2');
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 通用图标 */
+.icon-home::before { content: '\e900'; }
+.icon-list::before { content: '\e901'; }
+.icon-pie::before { content: '\e902'; }
+.icon-settings::before { content: '\e903'; }
+.icon-plus::before { content: '\e904'; }
+.icon-minus::before { content: '\e905'; }
+.icon-search::before { content: '\e906'; }
+.icon-bell::before { content: '\e907'; }
+.icon-wallet::before { content: '\e908'; }
+.icon-calendar::before { content: '\e909'; }
+.icon-edit::before { content: '\e90a'; }
+.icon-arrow-right::before { content: '\e90b'; }
+.icon-arrow-left::before { content: '\e90c'; }
+.icon-arrow-up::before { content: '\e90d'; }
+.icon-arrow-down::before { content: '\e90e'; }
+.icon-check::before { content: '\e90f'; }
+.icon-close::before { content: '\e910'; }
+.icon-delete::before { content: '\e911'; }
+.icon-filter::before { content: '\e912'; }
+.icon-sort::before { content: '\e913'; }
+.icon-transfer::before { content: '\e914'; }
+.icon-trending::before { content: '\e915'; }
+.icon-user::before { content: '\e916'; }
+.icon-lock::before { content: '\e917'; }
+.icon-eye::before { content: '\e918'; }
+.icon-eye-off::before { content: '\e919'; }
+.icon-more::before { content: '\e91a'; }
+.icon-share::before { content: '\e91b'; }
+.icon-download::before { content: '\e91c'; }
+.icon-upload::before { content: '\e91d'; }
+.icon-refresh::before { content: '\e91e'; }
+.icon-star::before { content: '\e91f'; }
+.icon-heart::before { content: '\e920'; }
+.icon-thumbs-up::before { content: '\e921'; }
+.icon-message::before { content: '\e922'; }
+.icon-phone::before { content: '\e923'; }
+.icon-mail::before { content: '\e924'; }
+.icon-location::before { content: '\e925'; }
+.icon-camera::before { content: '\e926'; }
+.icon-image::before { content: '\e927'; }
+.icon-file::before { content: '\e928'; }
+.icon-folder::before { content: '\e929'; }
+.icon-link::before { content: '\e92a'; }
+.icon-copy::before { content: '\e92b'; }
+.icon-cut::before { content: '\e92c'; }
+.icon-paste::before { content: '\e92d'; }
+.icon-undo::before { content: '\e92e'; }
+.icon-redo::before { content: '\e92f'; }
+.icon-save::before { content: '\e930'; }
+.icon-print::before { content: '\e931'; }
+.icon-info::before { content: '\e932'; }
+.icon-warning::before { content: '\e933'; }
+.icon-error::before { content: '\e934'; }
+.icon-success::before { content: '\e935'; }
+.icon-question::before { content: '\e936'; }
+.icon-help::before { content: '\e937'; }
+.icon-menu::before { content: '\e938'; }
+.icon-grid::before { content: '\e939'; }
+.icon-list-ul::before { content: '\e93a'; }
+.icon-list-ol::before { content: '\e93b'; }
+.icon-table::before { content: '\e93c'; }
+.icon-chart-bar::before { content: '\e93d'; }
+.icon-chart-line::before { content: '\e93e'; }
+.icon-chart-pie::before { content: '\e93f'; }
+.icon-chart-area::before { content: '\e940'; }
+
+/* 记账应用专用图标 */
+.icon-income::before { content: '\e941'; }
+.icon-expense::before { content: '\e942'; }
+.icon-budget::before { content: '\e943'; }
+.icon-category::before { content: '\e944'; }
+.icon-account::before { content: '\e945'; }
+.icon-balance::before { content: '\e946'; }
+.icon-target::before { content: '\e947'; }
+.icon-statistics::before { content: '\e948'; }
+.icon-report::before { content: '\e949'; }
+.icon-export::before { content: '\e94a'; }
+.icon-import::before { content: '\e94b'; }
+.icon-backup::before { content: '\e94c'; }
+.icon-restore::before { content: '\e94d'; }
+.icon-sync::before { content: '\e94e'; }
+.icon-reminder::before { content: '\e94f'; }
+
+/* 分类图标 */
+.icon-food::before { content: '\e950'; }
+.icon-transport::before { content: '\e951'; }
+.icon-shopping::before { content: '\e952'; }
+.icon-house::before { content: '\e953'; }
+.icon-entertainment::before { content: '\e954'; }
+.icon-medical::before { content: '\e955'; }
+.icon-education::before { content: '\e956'; }
+.icon-travel::before { content: '\e957'; }
+.icon-clothing::before { content: '\e958'; }
+.icon-beauty::before { content: '\e959'; }
+.icon-sports::before { content: '\e95a'; }
+.icon-gift::before { content: '\e95b'; }
+.icon-pet::before { content: '\e95c'; }
+.icon-charity::before { content: '\e95d'; }
+.icon-investment::before { content: '\e95e'; }
+.icon-insurance::before { content: '\e95f'; }
+
+/* 支付方式图标 */
+.icon-cash::before { content: '\e960'; }
+.icon-card::before { content: '\e961'; }
+.icon-credit-card::before { content: '\e962'; }
+.icon-alipay::before { content: '\e963'; }
+.icon-wechat-pay::before { content: '\e964'; }
+.icon-apple-pay::before { content: '\e965'; }
+.icon-paypal::before { content: '\e966'; }
+
+/* 状态图标 */
+.icon-loading::before {
+  content: '\e967';
+  animation: spin 1s linear infinite;
+}
+
+.icon-wifi::before { content: '\e968'; }
+.icon-wifi-off::before { content: '\e969'; }
+.icon-battery::before { content: '\e96a'; }
+.icon-battery-low::before { content: '\e96b'; }
+.icon-signal::before { content: '\e96c'; }
+
+/* 动画 */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% { transform: translate3d(0, 0, 0); }
+  40%, 43% { transform: translate3d(0, -10px, 0); }
+  70% { transform: translate3d(0, -5px, 0); }
+  90% { transform: translate3d(0, -2px, 0); }
+}
+
+/* 图标尺寸类 */
+.icon-xs { font-size: 12px; }
+.icon-sm { font-size: 14px; }
+.icon-md { font-size: 16px; }
+.icon-lg { font-size: 20px; }
+.icon-xl { font-size: 24px; }
+.icon-xxl { font-size: 32px; }
+
+/* 图标颜色类 */
+.icon-primary { color: #64CFB3; }
+.icon-secondary { color: #6FD8D8; }
+.icon-accent { color: #ADA9E4; }
+.icon-expense { color: #E9A0A5; }
+.icon-income { color: #64CFB3; }
+.icon-warning { color: #F2D6A7; }
+.icon-success { color: #64CFB3; }
+.icon-error { color: #E9A0A5; }
+.icon-info { color: #6FD8D8; }
+.icon-muted { color: #A2A4A5; }
+.icon-dark { color: #1F2324; }
+.icon-light { color: #667085; }
+.icon-white { color: #FFFFFF; }
+
+/* 图标状态 */
+.icon-active {
+  color: #64CFB3;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+.icon-disabled {
+  color: #A2A4A5;
+  opacity: 0.5;
+}
+
+.icon-hover:hover {
+  color: #64CFB3;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+/* 图标背景 */
+.icon-bg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(100, 207, 179, 0.1);
+}
+
+.icon-bg-circle {
+  border-radius: 50%;
+}
+
+.icon-bg-primary {
+  background: linear-gradient(135deg, #64CFB3, #6FD8D8);
+  color: #FFFFFF;
+}
+
+.icon-bg-expense {
+  background: linear-gradient(135deg, #E9A0A5, #F2D6A7);
+  color: #FFFFFF;
+}
+
+.icon-bg-income {
+  background: linear-gradient(135deg, #64CFB3, #6FD8D8);
+  color: #FFFFFF;
+}
+
+.icon-bg-light {
+  background: rgba(255, 255, 255, 0.8);
+  color: #64CFB3;
+}
