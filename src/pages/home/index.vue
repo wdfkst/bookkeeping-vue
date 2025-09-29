@@ -280,6 +280,9 @@ $spacing-xxl: 24px;
   min-height: 100vh;
   background: $bg-color;
   position: relative;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .custom-navbar {
@@ -513,12 +516,21 @@ $spacing-xxl: 24px;
   gap: $spacing-md;
   margin: $spacing-lg 0;
 
+  @media (max-width: 480px) {
+    gap: $spacing-sm;
+    margin: $spacing-md 0;
+  }
+
   .action-item {
     @extend .card;
     padding: $spacing-md;
     text-align: center;
     transition: all 0.3s ease;
     cursor: pointer;
+
+    @media (max-width: 480px) {
+      padding: $spacing-sm;
+    }
 
     &:active {
       transform: scale(0.95);
@@ -533,9 +545,18 @@ $spacing-xxl: 24px;
       justify-content: center;
       margin: 0 auto $spacing-sm;
 
+      @media (max-width: 480px) {
+        width: 40px;
+        height: 40px;
+      }
+
       .iconfont {
         color: $white;
         font-size: 24px;
+
+        @media (max-width: 480px) {
+          font-size: 20px;
+        }
       }
     }
 
@@ -554,6 +575,10 @@ $spacing-xxl: 24px;
     .action-text {
       color: $text-light;
       font-size: $font-xs;
+
+      @media (max-width: 480px) {
+        font-size: 11px;
+      }
     }
   }
 }

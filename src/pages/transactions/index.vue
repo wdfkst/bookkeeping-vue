@@ -415,6 +415,17 @@ onMounted(() => {
   min-height: 100vh;
   background: #F5F7FB;
   padding: 20px 20px 100px;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+
+  @media (max-width: 768px) {
+    padding: 16px 16px 100px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 12px 100px;
+  }
 }
 
 .page-header {
