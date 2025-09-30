@@ -1,0 +1,1423 @@
+// Ant Design Vue 全局样式覆盖
+// 符合玻璃态设计风格的组件样式定制
+
+@import './variables.scss';
+
+// 覆盖Ant Design的CSS变量
+:root {
+  --ant-modal-content-bg: rgba(255, 255, 255, 0.95) !important;
+  --ant-modal-header-bg: linear-gradient(135deg, #64CFB3, #6FD8D8) !important;
+  --ant-modal-body-padding: 0px !important;
+  --ant-modal-padding-horizontal: 0px !important;
+  --ant-modal-padding-vertical: 0px !important;
+}
+
+// 确保Modal容器正常显示和居中
+.ant-modal-wrap {
+  .ant-modal {
+    margin: 0 auto !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+}
+
+// 修复Modal本身的点击事件
+.ant-modal {
+  pointer-events: auto !important; // 确保modal可以点击
+}
+
+// 确认对话框样式 - 使用全局CSS选择器确保优先级
+.ant-modal-confirm {
+  .ant-modal-content {
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 20px 40px rgba(16, 24, 40, 0.15) !important;
+  }
+
+  .ant-modal-header {
+    background: linear-gradient(135deg, #64CFB3, #6FD8D8) !important;
+    border-bottom: none !important;
+    padding: 20px 24px !important;
+    border-radius: 20px 20px 0 0 !important;
+
+    .ant-modal-title {
+      color: white !important;
+      font-weight: 600 !important;
+      font-size: 18px !important;
+    }
+  }
+
+  .ant-modal-body {
+    padding: 24px !important;
+    background: transparent !important;
+
+    .ant-modal-confirm-body {
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 16px !important;
+
+      .ant-modal-confirm-title {
+        color: #1F2324 !important;
+        font-weight: 600 !important;
+        font-size: 16px !important;
+        margin-bottom: 8px !important;
+      }
+
+      .ant-modal-confirm-content {
+        color: #667085 !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+      }
+
+      .anticon {
+        color: #64CFB3 !important;
+        font-size: 22px !important;
+        margin-top: 2px !important;
+      }
+
+      &.ant-modal-confirm-warning {
+        .anticon {
+          color: #F2D6A7 !important;
+        }
+      }
+
+      &.ant-modal-confirm-error {
+        .anticon {
+          color: #E76F51 !important;
+        }
+      }
+    }
+  }
+
+  .ant-modal-footer {
+    border-top: 1px solid rgba(238, 241, 245, 0.5) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(6px) !important;
+    padding: 16px 24px !important;
+    border-radius: 0 0 20px 20px !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    gap: 12px !important;
+
+    .ant-btn {
+      border-radius: 12px !important;
+      height: 40px !important;
+      font-weight: 500 !important;
+      border: none !important;
+      min-width: 80px !important;
+
+      &.ant-btn-default {
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(6px) !important;
+        border: 1px solid rgba(238, 241, 245, 0.8) !important;
+        color: #667085 !important;
+
+        &:hover {
+          background: rgba(100, 207, 179, 0.1) !important;
+          border-color: #64CFB3 !important;
+          color: #64CFB3 !important;
+          transform: translateY(-1px) !important;
+        }
+      }
+
+      &.ant-btn-primary {
+        background: linear-gradient(135deg, #64CFB3, #6FD8D8) !important;
+        border: none !important;
+        color: white !important;
+
+        &:hover {
+          background: linear-gradient(135deg, #5bb8a0, #5fc5c5) !important;
+          transform: translateY(-1px) !important;
+        }
+      }
+
+      &.ant-btn-dangerous {
+        background: rgba(231, 111, 81, 0.1) !important;
+        border: 1px solid rgba(231, 111, 81, 0.3) !important;
+        color: #E76F51 !important;
+
+        &:hover {
+          background: rgba(231, 111, 81, 0.2) !important;
+          border-color: #E76F51 !important;
+          transform: translateY(-1px) !important;
+        }
+      }
+    }
+  }
+
+  .ant-modal-close {
+    display: none !important;
+  }
+}
+
+// 仅针对确认框按钮中文化，不影响其他Modal
+.ant-modal-confirm .ant-btn {
+  position: relative;
+
+  // 隐藏原始文字但保留内容
+  > span {
+    opacity: 0;
+  }
+
+  // 确认按钮
+  &.ant-btn-primary::before {
+    content: "确认";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  // 取消按钮
+  &.ant-btn-default::before {
+    content: "取消";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #667085;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  // 危险按钮
+  &.ant-btn-dangerous::before {
+    content: "确认";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #E76F51;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+// 深度选择器确认框样式
+:deep(.ant-modal-confirm) {
+  .ant-modal-content {
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 20px 40px rgba(16, 24, 40, 0.15) !important;
+  }
+
+  .ant-modal-header {
+    background: linear-gradient(135deg, #64CFB3, #6FD8D8) !important;
+    border-bottom: none !important;
+    padding: 20px 24px !important;
+    border-radius: 20px 20px 0 0 !important;
+
+    .ant-modal-title {
+      color: white !important;
+      font-weight: 600 !important;
+      font-size: 18px !important;
+    }
+  }
+
+  .ant-modal-body {
+    padding: 24px !important;
+    background: transparent !important;
+
+    .ant-modal-confirm-body {
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 16px !important;
+
+      .ant-modal-confirm-title {
+        color: #1F2324 !important;
+        font-weight: 600 !important;
+        font-size: 16px !important;
+        margin-bottom: 8px !important;
+      }
+
+      .ant-modal-confirm-content {
+        color: #667085 !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+      }
+
+      .anticon {
+        color: #64CFB3 !important;
+        font-size: 22px !important;
+        margin-top: 2px !important;
+      }
+
+      &.ant-modal-confirm-warning {
+        .anticon {
+          color: #F2D6A7 !important;
+        }
+      }
+
+      &.ant-modal-confirm-error {
+        .anticon {
+          color: #E76F51 !important;
+        }
+      }
+    }
+  }
+
+  .ant-modal-footer {
+    border-top: 1px solid rgba(238, 241, 245, 0.5) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(6px) !important;
+    padding: 16px 24px !important;
+    border-radius: 0 0 20px 20px !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    gap: 12px !important;
+
+    .ant-btn {
+      border-radius: 12px !important;
+      height: 40px !important;
+      font-weight: 500 !important;
+      border: none !important;
+      min-width: 80px !important;
+
+      &.ant-btn-default {
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(6px) !important;
+        border: 1px solid rgba(238, 241, 245, 0.8) !important;
+        color: #667085 !important;
+
+        &:hover {
+          background: rgba(100, 207, 179, 0.1) !important;
+          border-color: #64CFB3 !important;
+          color: #64CFB3 !important;
+          transform: translateY(-1px) !important;
+        }
+      }
+
+      &.ant-btn-primary {
+        background: linear-gradient(135deg, #64CFB3, #6FD8D8) !important;
+        border: none !important;
+        color: white !important;
+
+        &:hover {
+          background: linear-gradient(135deg, #5bb8a0, #5fc5c5) !important;
+          transform: translateY(-1px) !important;
+        }
+      }
+
+      &.ant-btn-dangerous {
+        background: rgba(231, 111, 81, 0.1) !important;
+        border: 1px solid rgba(231, 111, 81, 0.3) !important;
+        color: #E76F51 !important;
+
+        &:hover {
+          background: rgba(231, 111, 81, 0.2) !important;
+          border-color: #E76F51 !important;
+          transform: translateY(-1px) !important;
+        }
+      }
+    }
+  }
+
+  .ant-modal-close {
+    display: none !important;
+  }
+}
+
+// Message 消息提示样式
+.ant-message {
+  .ant-message-notice {
+    .ant-message-notice-content {
+      background: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(20px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      border-radius: 16px !important;
+      box-shadow: 0 12px 28px rgba(16, 24, 40, 0.15) !important;
+      padding: 12px 20px !important;
+
+      .ant-message-custom-content {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+
+        .anticon {
+          font-size: 16px !important;
+        }
+
+        &.ant-message-success {
+          .anticon {
+            color: #64CFB3 !important;
+          }
+        }
+
+        &.ant-message-info {
+          .anticon {
+            color: #6FD8D8 !important;
+          }
+        }
+
+        &.ant-message-warning {
+          .anticon {
+            color: #F2D6A7 !important;
+          }
+        }
+
+        &.ant-message-error {
+          .anticon {
+            color: #E76F51 !important;
+          }
+        }
+
+        span {
+          color: #1F2324 !important;
+          font-weight: 500 !important;
+          font-size: 14px !important;
+        }
+      }
+    }
+  }
+}
+
+// 全局Modal样式 - 使用更高优先级选择器
+.ant-modal,
+:deep(.ant-modal) {
+  .ant-modal-content {
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 20px 40px rgba(16, 24, 40, 0.15) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .ant-modal-header {
+    background: linear-gradient(135deg, #64CFB3, #6FD8D8) !important;
+    border-bottom: none !important;
+    padding: 20px 24px !important;
+    border-radius: 20px 20px 0 0 !important;
+    margin: 0 !important;
+
+    .ant-modal-title {
+      color: white !important;
+      font-weight: 600 !important;
+      font-size: 18px !important;
+    }
+  }
+
+  .ant-modal-close {
+    color: white !important;
+    top: 16px !important;
+    right: 16px !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(6px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3) !important;
+      color: white !important;
+    }
+
+    .anticon {
+      font-size: 14px !important;
+    }
+  }
+
+  .ant-modal-body {
+    padding: 24px !important;
+    background: transparent !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .ant-modal-footer {
+    border-top: 1px solid rgba(238, 241, 245, 0.5) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(6px) !important;
+    padding: 16px 24px !important;
+    border-radius: 0 0 20px 20px !important;
+    margin: 0 !important;
+
+    .ant-btn {
+      border-radius: 12px !important;
+      height: 40px !important;
+      font-weight: 500 !important;
+      border: none !important;
+
+      &.ant-btn-default {
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(6px) !important;
+        border: 1px solid rgba(238, 241, 245, 0.8) !important;
+        color: #667085 !important;
+
+        &:hover {
+          background: rgba(100, 207, 179, 0.1) !important;
+          border-color: #64CFB3 !important;
+          color: #64CFB3 !important;
+        }
+      }
+
+      &.ant-btn-primary {
+        background: linear-gradient(135deg, #64CFB3, #6FD8D8) !important;
+        border: none !important;
+        color: white !important;
+
+        &:hover {
+          background: linear-gradient(135deg, #5bb8a0, #5fc5c5) !important;
+        }
+      }
+    }
+  }
+
+  // 针对特定弹窗类型的样式
+  &.ant-modal-wrap {
+    .ant-modal {
+      .ant-modal-content {
+        border-radius: 20px !important;
+        overflow: hidden !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        box-shadow: 0 20px 40px rgba(16, 24, 40, 0.15) !important;
+        padding: 0 !important;
+      }
+    }
+  }
+}
+
+// 按钮样式
+.ant-btn {
+  border-radius: 12px;
+  font-weight: 500;
+  border: none;
+  transition: all 0.3s ease;
+
+  &.ant-btn-default {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(238, 241, 245, 0.8);
+    color: #667085;
+
+    &:hover {
+      background: rgba(100, 207, 179, 0.1);
+      border-color: #64CFB3;
+      color: #64CFB3;
+      transform: translateY(-1px);
+    }
+  }
+
+  &.ant-btn-primary {
+    background: linear-gradient(135deg, #64CFB3, #6FD8D8);
+    border: none;
+    color: white;
+
+    &:hover {
+      background: linear-gradient(135deg, #5bb8a0, #5fc5c5);
+      transform: translateY(-1px);
+    }
+  }
+
+  &.ant-btn-danger {
+    background: rgba(231, 111, 81, 0.1);
+    border: 1px solid rgba(231, 111, 81, 0.3);
+    color: #E76F51;
+
+    &:hover {
+      background: rgba(231, 111, 81, 0.2);
+      border-color: #E76F51;
+      transform: translateY(-1px);
+    }
+
+    &.ant-btn-background-ghost {
+      background: transparent;
+    }
+  }
+
+  &.ant-btn-dashed {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6px);
+    border: 2px dashed rgba(100, 207, 179, 0.4);
+    color: #64CFB3;
+
+    &:hover {
+      background: rgba(100, 207, 179, 0.1);
+      border-color: #64CFB3;
+      transform: translateY(-1px);
+    }
+  }
+
+  &.ant-btn-text {
+    background: transparent;
+    color: #667085;
+
+    &:hover {
+      background: rgba(100, 207, 179, 0.1);
+      color: #64CFB3;
+    }
+  }
+
+  &.ant-btn-link {
+    color: #64CFB3;
+    background: transparent;
+    border: none;
+
+    &:hover {
+      color: #5bb8a0;
+      background: rgba(100, 207, 179, 0.05);
+    }
+  }
+}
+
+// 输入框样式
+.ant-input,
+.ant-select-selector,
+.ant-picker {
+  border-radius: 12px !important;
+  border: 1px solid rgba(238, 241, 245, 0.8) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(6px) !important;
+  transition: all 0.3s ease !important;
+  box-shadow: none !important; // 移除输入框的内部阴影
+  outline: none !important; // 移除焦点时的轮廓
+
+  // 移除输入框内部的额外边框和阴影
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+  }
+
+  &::-webkit-input-placeholder {
+    color: #a2a4a5 !important;
+  }
+
+  &::placeholder {
+    color: #a2a4a5 !important;
+  }
+
+  &:hover {
+    border-color: rgba(100, 207, 179, 0.6) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: none !important;
+  }
+
+  &:focus,
+  &.ant-select-focused,
+  &.ant-picker-focused {
+    border-color: #64CFB3 !important;
+    box-shadow: 0 0 0 4px rgba(100, 207, 179, 0.1) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    outline: none !important;
+  }
+}
+
+// 特别处理Ant Design Input组件的内部样式
+.ant-input-affix-wrapper {
+  border: 1px solid rgba(238, 241, 245, 0.8) !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(6px) !important;
+  box-shadow: none !important;
+
+  .ant-input {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  &:hover {
+    border-color: rgba(100, 207, 179, 0.6) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  &.ant-input-affix-wrapper-focused {
+    border-color: #64CFB3 !important;
+    box-shadow: 0 0 0 4px rgba(100, 207, 179, 0.1) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+  }
+}
+
+// Segmented 分段控制器样式
+.ant-segmented {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(238, 241, 245, 0.5);
+  border-radius: 12px;
+  padding: 4px;
+
+  .ant-segmented-item {
+    border-radius: 8px;
+    color: #667085;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(100, 207, 179, 0.1);
+      color: #64CFB3;
+    }
+
+    &.ant-segmented-item-selected {
+      background: linear-gradient(135deg, #64CFB3, #6FD8D8);
+      color: white;
+      box-shadow: 0 2px 8px rgba(100, 207, 179, 0.3);
+    }
+  }
+}
+
+// 下拉菜单样式
+.ant-dropdown {
+  .ant-dropdown-menu {
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(16, 24, 40, 0.15);
+    padding: 8px;
+
+    .ant-dropdown-menu-item {
+      border-radius: 8px;
+      margin: 2px 0;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: rgba(100, 207, 179, 0.1);
+        color: #64CFB3;
+      }
+
+      &.danger-item {
+        &:hover {
+          background: rgba(231, 111, 81, 0.1);
+          color: #E76F51;
+        }
+      }
+    }
+  }
+}
+
+// 选择器下拉菜单
+.ant-select-dropdown {
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 20px 40px rgba(16, 24, 40, 0.15);
+
+  .ant-select-item {
+    border-radius: 8px;
+    margin: 2px 4px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(100, 207, 179, 0.1);
+    }
+
+    &.ant-select-item-option-selected {
+      background: rgba(100, 207, 179, 0.15);
+      color: #64CFB3;
+      font-weight: 500;
+    }
+  }
+}
+
+// 开关样式
+.ant-switch {
+  background: rgba(167, 173, 185, 0.3);
+  border: 1px solid rgba(238, 241, 245, 0.5);
+
+  &.ant-switch-checked {
+    background: linear-gradient(135deg, #64CFB3, #6FD8D8);
+  }
+
+  .ant-switch-handle {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    &::before {
+      border-radius: 50%;
+      background: white;
+    }
+  }
+}
+
+// 单选框组样式
+.ant-radio-group {
+  .ant-radio-wrapper {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(238, 241, 245, 0.5);
+    border-radius: 8px;
+    padding: 8px 16px;
+    margin: 4px 8px 4px 0;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(100, 207, 179, 0.1);
+      border-color: rgba(100, 207, 179, 0.3);
+    }
+
+    .ant-radio {
+      .ant-radio-inner {
+        border-color: rgba(100, 207, 179, 0.6);
+
+        &::after {
+          background: #64CFB3;
+        }
+      }
+
+      &.ant-radio-checked {
+        .ant-radio-inner {
+          border-color: #64CFB3;
+          background: #64CFB3;
+        }
+      }
+    }
+
+    &.ant-radio-wrapper-checked {
+      background: rgba(100, 207, 179, 0.15);
+      border-color: #64CFB3;
+      color: #64CFB3;
+    }
+  }
+}
+
+// 复选框组样式
+.ant-checkbox-group {
+  .ant-checkbox-wrapper {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(238, 241, 245, 0.5);
+    border-radius: 8px;
+    padding: 8px 16px;
+    margin: 4px 8px 4px 0;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(100, 207, 179, 0.1);
+      border-color: rgba(100, 207, 179, 0.3);
+    }
+
+    .ant-checkbox {
+      .ant-checkbox-inner {
+        border-color: rgba(100, 207, 179, 0.6);
+        border-radius: 4px;
+
+        &::after {
+          border-color: white;
+        }
+      }
+
+      &.ant-checkbox-checked {
+        .ant-checkbox-inner {
+          background: #64CFB3;
+          border-color: #64CFB3;
+        }
+      }
+    }
+
+    &.ant-checkbox-wrapper-checked {
+      background: rgba(100, 207, 179, 0.15);
+      border-color: #64CFB3;
+      color: #64CFB3;
+    }
+  }
+}
+
+// 标签页样式
+.ant-tabs {
+  .ant-tabs-nav {
+    margin-bottom: 24px;
+
+    &::before {
+      border-bottom: 1px solid rgba(238, 241, 245, 0.5);
+    }
+
+    .ant-tabs-nav-wrap {
+      .ant-tabs-nav-list {
+        .ant-tabs-tab {
+          border-radius: 8px 8px 0 0;
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(6px);
+          border: 1px solid rgba(238, 241, 245, 0.5);
+          margin-right: 8px;
+          padding: 12px 20px;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background: rgba(100, 207, 179, 0.1);
+            border-color: rgba(100, 207, 179, 0.3);
+          }
+
+          &.ant-tabs-tab-active {
+            background: linear-gradient(135deg, rgba(100, 207, 179, 0.1), rgba(111, 216, 216, 0.1));
+            border-color: #64CFB3;
+            color: #64CFB3;
+
+            .ant-tabs-tab-btn {
+              color: #64CFB3;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+
+    .ant-tabs-ink-bar {
+      background: linear-gradient(135deg, #64CFB3, #6FD8D8);
+      height: 3px;
+      border-radius: 2px;
+    }
+  }
+}
+
+// 日期选择器样式 - 提高优先级
+.ant-picker-dropdown,
+body .ant-picker-dropdown {
+  z-index: 1100 !important; // 提高z-index确保在Modal之上
+
+  .ant-picker-panel-container {
+    border-radius: 16px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 20px 40px rgba(16, 24, 40, 0.15) !important;
+
+    @media (max-width: 480px) {
+      width: 90vw !important;
+      max-width: 350px !important;
+      position: fixed !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+    }
+
+    .ant-picker-panel {
+      background: transparent !important;
+      border: none !important;
+
+      @media (max-width: 480px) {
+        width: 100% !important;
+      }
+
+      .ant-picker-header {
+        border-bottom: 1px solid rgba(238, 241, 245, 0.5) !important;
+
+        button {
+          border-radius: 6px !important;
+          transition: all 0.3s ease !important;
+          color: #1F2324 !important;
+
+          &:hover {
+            background: rgba(100, 207, 179, 0.1) !important;
+            color: #64CFB3 !important;
+          }
+        }
+
+        .ant-picker-header-view {
+          button {
+            color: #1F2324 !important;
+            font-weight: 500 !important;
+
+            &:hover {
+              color: #64CFB3 !important;
+            }
+          }
+        }
+      }
+
+      .ant-picker-body {
+        .ant-picker-content {
+          th {
+            color: #667085 !important;
+            font-weight: 500 !important;
+          }
+
+          td {
+            .ant-picker-cell-inner {
+              border-radius: 6px !important;
+              transition: all 0.3s ease !important;
+              color: #1F2324 !important;
+
+              &:hover {
+                background: rgba(100, 207, 179, 0.1) !important;
+                color: #64CFB3 !important;
+              }
+            }
+
+            &.ant-picker-cell-selected {
+              .ant-picker-cell-inner {
+                background: linear-gradient(135deg, #64CFB3, #6FD8D8) !important;
+                color: white !important;
+              }
+            }
+
+            &.ant-picker-cell-in-range {
+              position: relative !important;
+
+              &::before {
+                content: '' !important;
+                position: absolute !important;
+                top: 4px !important;
+                bottom: 4px !important;
+                left: 0 !important;
+                right: 0 !important;
+                background: rgba(100, 207, 179, 0.1) !important;
+              }
+
+              .ant-picker-cell-inner {
+                background: rgba(100, 207, 179, 0.1) !important;
+                color: #64CFB3 !important;
+              }
+            }
+
+            &.ant-picker-cell-range-start,
+            &.ant-picker-cell-range-end {
+              .ant-picker-cell-inner {
+                background: linear-gradient(135deg, #64CFB3, #6FD8D8) !important;
+                color: white !important;
+              }
+            }
+
+            &.ant-picker-cell-today {
+              .ant-picker-cell-inner {
+                border: 1px solid #64CFB3 !important;
+                color: #64CFB3 !important;
+                font-weight: 600 !important;
+              }
+
+              &.ant-picker-cell-selected .ant-picker-cell-inner {
+                border: 1px solid rgba(255, 255, 255, 0.3) !important;
+              }
+            }
+
+            &.ant-picker-cell-disabled {
+              .ant-picker-cell-inner {
+                color: #d9d9d9 !important;
+                background: transparent !important;
+
+                &:hover {
+                  color: #d9d9d9 !important;
+                  background: transparent !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // 隐藏多余的日历面板
+    .ant-picker-panels {
+      @media (max-width: 480px) {
+        .ant-picker-panel:nth-child(2) {
+          display: none !important;
+        }
+      }
+    }
+  }
+}
+
+// Range Picker 移动端适配 - 提高优先级
+.ant-picker,
+body .ant-picker {
+  border-radius: 12px !important;
+  border: 1px solid rgba(238, 241, 245, 0.8) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(6px) !important;
+  transition: all 0.3s ease !important;
+  box-shadow: none !important;
+  outline: none !important;
+
+  @media (max-width: 480px) {
+    width: 100% !important;
+  }
+
+  &:hover {
+    border-color: rgba(100, 207, 179, 0.6) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: none !important;
+  }
+
+  &:focus,
+  &.ant-picker-focused {
+    border-color: #64CFB3 !important;
+    box-shadow: 0 0 0 4px rgba(100, 207, 179, 0.1) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    outline: none !important;
+  }
+
+  .ant-picker-input {
+    input {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      color: #1F2324 !important;
+
+      &::placeholder {
+        color: #a2a4a5 !important;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 14px !important;
+        padding: 8px !important;
+      }
+    }
+  }
+
+  &.ant-picker-range {
+    @media (max-width: 480px) {
+      // 移动端隐藏分隔符和第二个输入框
+      .ant-picker-range-separator {
+        display: none !important;
+      }
+
+      .ant-picker-input:last-child {
+        display: none !important;
+      }
+
+      .ant-picker-input:first-child {
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+// 表单项样式
+.ant-form-item {
+  margin-bottom: 20px;
+
+  .ant-form-item-label {
+    padding-bottom: 8px;
+
+    label {
+      color: #1F2324;
+      font-weight: 500;
+      font-size: 14px;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  .ant-form-item-control {
+    .ant-form-item-control-input {
+      min-height: auto;
+    }
+  }
+}
+
+// 修复Modal中的日期选择器显示问题
+.ant-modal {
+  // 确保Modal内容可以显示弹出层
+  .ant-modal-content {
+    overflow: visible !important;
+  }
+
+  .ant-modal-body {
+    overflow: visible !important;
+  }
+
+  // Modal中的日期选择器特殊处理
+  .ant-picker {
+    // 确保输入框可以正常显示
+    position: relative !important;
+    z-index: 1 !important;
+  }
+}
+
+// 针对移动端Modal中的日期选择器进一步优化
+@media (max-width: 480px) {
+  .ant-modal .ant-picker-dropdown {
+    // 在移动端使用固定定位，完全脱离Modal容器
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 1200 !important; // 更高的z-index
+
+    .ant-picker-panel-container {
+      width: 90vw !important;
+      max-width: 320px !important;
+      max-height: 70vh !important;
+      overflow-y: auto !important;
+    }
+  }
+
+  // 确保Modal在移动端的z-index不会干扰日期选择器
+  .ant-modal-mask {
+    z-index: 1000 !important;
+  }
+
+  .ant-modal-wrap {
+    z-index: 1000 !important;
+  }
+}
+
+// 最高优先级Modal修复 - 保持简单有效
+body {
+  .ant-modal,
+  .ant-modal-wrap,
+  .ant-modal-mask + .ant-modal-wrap {
+    .ant-modal {
+      // 保持基本的点击事件
+      pointer-events: auto !important;
+
+      .ant-modal-content {
+        border-radius: 20px !important;
+        overflow: hidden !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(20px) !important;
+        border: none !important; // 完全移除边框
+        box-shadow: 0 20px 40px rgba(16, 24, 40, 0.15) !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        box-sizing: border-box !important;
+        pointer-events: auto !important;
+      }
+
+      .ant-modal-header {
+        background: linear-gradient(135deg, #64CFB3, #6FD8D8) !important;
+        border-bottom: none !important;
+        padding: 20px 24px !important;
+        border-radius: 20px 20px 0 0 !important;
+        margin: 0 !important;
+        position: relative !important;
+        box-sizing: border-box !important;
+
+        .ant-modal-title {
+          color: white !important;
+          font-weight: 600 !important;
+          font-size: 18px !important;
+          margin: 0 !important;
+        }
+      }
+
+      .ant-modal-body {
+        padding: 24px !important;
+        background: transparent !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        position: relative !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        pointer-events: auto !important;
+      }
+
+      .ant-modal-footer {
+        border-top: 1px solid rgba(238, 241, 245, 0.5) !important;
+        background: rgba(255, 255, 255, 0.7) !important;
+        backdrop-filter: blur(6px) !important;
+        padding: 16px 24px !important;
+        border-radius: 0 0 20px 20px !important;
+        margin: 0 !important;
+        position: relative !important;
+        box-sizing: border-box !important;
+        pointer-events: auto !important;
+      }
+
+      .ant-modal-close {
+        color: white !important;
+        top: 16px !important;
+        right: 16px !important;
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 8px !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+        backdrop-filter: blur(6px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: absolute !important;
+        z-index: 10 !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.3) !important;
+          color: white !important;
+        }
+
+        .anticon {
+          font-size: 14px !important;
+          pointer-events: none !important;
+        }
+      }
+    }
+  }
+}
+
+// 针对具有footer:null的Modal特殊处理
+body .ant-modal .ant-modal-content:has(.ant-modal-body:last-child) {
+  .ant-modal-body {
+    border-radius: 0 0 20px 20px !important;
+  }
+}
+
+// 全面消除Modal所有可能的间距和边框
+* {
+  &.ant-modal {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    outline: none !important;
+    box-sizing: border-box !important;
+
+    * {
+      box-sizing: border-box !important;
+    }
+
+    .ant-modal-content {
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      outline: none !important;
+      position: relative !important;
+
+      // 确保所有子元素完全贴合
+      > * {
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+      }
+
+      .ant-modal-header + .ant-modal-body {
+        margin-top: 0 !important;
+        border-top: none !important;
+      }
+
+      .ant-modal-body + .ant-modal-footer {
+        margin-top: 0 !important;
+      }
+    }
+  }
+}
+
+// 特殊处理确认框的完全填充
+.ant-modal-confirm {
+  .ant-modal-content {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+
+    .ant-modal-header,
+    .ant-modal-body,
+    .ant-modal-footer {
+      flex-shrink: 0 !important;
+      width: 100% !important;
+      margin: 0 !important;
+      border: none !important;
+    }
+
+    .ant-modal-body {
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+  }
+}
+
+// 终极修复 - 简化版本，只修复必要问题
+html body {
+  .ant-modal-root {
+    .ant-modal-wrap {
+      .ant-modal {
+        pointer-events: auto !important;
+
+        .ant-modal-content {
+          border-radius: 20px !important;
+          overflow: hidden !important;
+          background: rgba(255, 255, 255, 0.95) !important;
+          backdrop-filter: blur(20px) !important;
+          border: none !important;
+          box-shadow: 0 20px 40px rgba(16, 24, 40, 0.15) !important;
+          pointer-events: auto !important;
+        }
+      }
+    }
+  }
+
+  // 确保遮罩层正常工作
+  .ant-modal-mask {
+    background: rgba(0, 0, 0, 0.45) !important;
+    pointer-events: auto !important;
+  }
+}
+
+// 最终全局重置 - 简化版本
+[class*="ant-modal"] {
+  box-sizing: border-box !important;
+}
+
+// 针对Modal容器的最高优先级重置
+.ant-modal-wrap {
+  .ant-modal {
+    .ant-modal-content {
+      // 使用负边距技术确保完全填充
+      margin: 0 !important;
+      padding: 0 !important;
+
+      // 完全移除边框
+      border: none !important;
+
+      // 完全消除任何可能的内部间距
+      > .ant-modal-header {
+        margin: 0 !important;
+        padding: 20px 24px !important;
+        border: none !important;
+        position: relative !important;
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      > .ant-modal-body {
+        margin: 0 !important;
+        padding: 24px !important;
+        border: none !important;
+        position: relative !important;
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+
+        // 确保body内部内容也无间距
+        > * {
+          margin: 0 !important;
+
+          &:first-child {
+            margin-top: 0 !important;
+          }
+
+          &:last-child {
+            margin-bottom: 0 !important;
+          }
+        }
+      }
+
+      > .ant-modal-footer {
+        margin: 0 !important;
+        padding: 16px 24px !important;
+        border: none !important;
+        border-top: 1px solid rgba(238, 241, 245, 0.5) !important;
+        position: relative !important;
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+    }
+  }
+}

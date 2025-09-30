@@ -11,33 +11,34 @@
       </div>
     </div>
 
-    <!-- 总览卡片 -->
-    <div class="overview-cards">
-      <div class="overview-card income">
-        <div class="card-icon">
-          <SvgIcon name="trending-up" :size="24" color="white" />
+    <div class="content-scrollable">
+      <!-- 总览卡片 -->
+      <div class="overview-cards">
+        <div class="overview-card income">
+          <div class="card-icon">
+            <SvgIcon name="graph" :size="24" color="white" />
+          </div>
+          <div class="card-info">
+            <div class="card-label">{{ timeModeLabel }}收入</div>
+            <div class="card-amount">¥{{ formatAmount(currentIncome) }}</div>
+            <div class="card-trend" :class="incomeTrend >= 0 ? 'up' : 'down'">
+              {{ incomeTrend >= 0 ? '+' : '' }}{{ incomeTrend.toFixed(1) }}%
+            </div>
+          </div>
         </div>
-        <div class="card-info">
-          <div class="card-label">{{ timeModeLabel }}收入</div>
-          <div class="card-amount">¥{{ formatAmount(currentIncome) }}</div>
-          <div class="card-trend" :class="incomeTrend >= 0 ? 'up' : 'down'">
-            {{ incomeTrend >= 0 ? '+' : '' }}{{ incomeTrend.toFixed(1) }}%
+        <div class="overview-card expense">
+          <div class="card-icon">
+            <SvgIcon name="outlay" :size="24" color="white" />
+          </div>
+          <div class="card-info">
+            <div class="card-label">{{ timeModeLabel }}支出</div>
+            <div class="card-amount">¥{{ formatAmount(currentExpense) }}</div>
+            <div class="card-trend" :class="expenseTrend >= 0 ? 'up' : 'down'">
+              {{ expenseTrend >= 0 ? '+' : '' }}{{ expenseTrend.toFixed(1) }}%
+            </div>
           </div>
         </div>
       </div>
-      <div class="overview-card expense">
-        <div class="card-icon">
-          <SvgIcon name="trending-down" :size="24" color="white" />
-        </div>
-        <div class="card-info">
-          <div class="card-label">{{ timeModeLabel }}支出</div>
-          <div class="card-amount">¥{{ formatAmount(currentExpense) }}</div>
-          <div class="card-trend" :class="expenseTrend >= 0 ? 'up' : 'down'">
-            {{ expenseTrend >= 0 ? '+' : '' }}{{ expenseTrend.toFixed(1) }}%
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- 趋势图表 -->
     <div class="chart-section card">
@@ -195,6 +196,10 @@
         </div>
       </div>
     </a-modal>
+
+    <!-- 底部安全距离 -->
+    <div class="safe-bottom"></div>
+    </div>
   </div>
 </template>
 
@@ -460,20 +465,35 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .analytics-page {
-  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   background: #F5F7FB;
-  padding: 20px 20px 100px;
   width: 100%;
+  height: 100%;
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow: hidden;
+  padding: 20px 20px 0;
 
   @media (max-width: 768px) {
-    padding: 16px 16px 100px;
+    padding: 16px 16px 0;
   }
 
   @media (max-width: 480px) {
-    padding: 12px 12px 100px;
+    padding: 12px 12px 0;
   }
+}
+
+.content-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 100px; // 底部tab安全距离
+  -webkit-overflow-scrolling: touch; // iOS平滑滚动
+}
+
+.safe-bottom {
+  height: 20px;
 }
 
 .page-header {
@@ -1170,32 +1190,6 @@ onMounted(() => {
           }
         }
       }
-    }
-  }
-}
-
-// Ant Design Modal 样式覆盖
-:deep(.ant-modal) {
-  .ant-modal-content {
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .ant-modal-header {
-    background: linear-gradient(135deg, #64CFB3, #6FD8D8);
-    border-bottom: none;
-
-    .ant-modal-title {
-      color: white;
-      font-weight: 600;
-    }
-  }
-
-  .ant-modal-close {
-    color: white;
-
-    &:hover {
-      color: rgba(255, 255, 255, 0.8);
     }
   }
 }

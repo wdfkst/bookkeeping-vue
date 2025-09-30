@@ -266,28 +266,62 @@ resetForm()
 <style lang="scss" scoped>
 .add-transaction-modal {
   :deep(.ant-modal-content) {
-    border-radius: 16px;
-    overflow: hidden;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border: none !important; // 移除边框
+    box-shadow: 0 20px 40px rgba(16, 24, 40, 0.15) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    box-sizing: border-box !important;
   }
 
   :deep(.ant-modal-header) {
-    background: linear-gradient(135deg, #64CFB3, #6FD8D8);
-    border-bottom: none;
-    padding: 20px 24px;
+    background: linear-gradient(135deg, #64CFB3, #6FD8D8) !important;
+    border-bottom: none !important;
+    padding: 20px 24px !important;
+    border-radius: 20px 20px 0 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    box-sizing: border-box !important;
 
     .ant-modal-title {
-      color: white;
-      font-size: 18px;
-      font-weight: 600;
+      color: white !important;
+      font-size: 18px !important;
+      font-weight: 600 !important;
+      margin: 0 !important;
     }
   }
 
   :deep(.ant-modal-close) {
-    color: white;
+    color: white !important;
+    top: 16px !important;
+    right: 16px !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(6px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    position: absolute !important;
+    z-index: 10 !important;
 
     &:hover {
-      color: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.3) !important;
+      color: white !important;
     }
+  }
+
+  :deep(.ant-modal-body) {
+    padding: 0 !important;
+    background: transparent !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
   }
 }
 

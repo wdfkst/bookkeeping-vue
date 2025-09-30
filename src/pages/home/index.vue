@@ -11,9 +11,9 @@
           </div>
         </div>
         <div class="navbar-actions">
-          <SvgIcon name="search" :size="20" color="#667085" />
+          <SvgIcon name="magnifier" :size="20" color="#667085" />
           <div @click="refreshData" style="cursor: pointer;">
-            <SvgIcon name="bell" :size="20" color="#667085" />
+            <SvgIcon name="notification" :size="20" color="#667085" />
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="time-info">
-            <SvgIcon name="calendar" :size="16" color="#667085" />
+            <SvgIcon name="calendar-alt" :size="16" color="#667085" />
             <span class="month">{{ currentMonth }}月</span>
           </div>
         </div>
@@ -71,19 +71,19 @@
       <div class="quick-actions">
         <div class="action-item" @click="quickAction('income')">
           <div class="action-icon income-bg">
-            <SvgIcon name="plus" :size="20" color="white" />
+            <SvgIcon name="add" :size="20" color="white" />
           </div>
           <span class="action-text">记收入</span>
         </div>
         <div class="action-item" @click="quickAction('expense')">
           <div class="action-icon expense-bg">
-            <SvgIcon name="minus" :size="20" color="white" />
+            <SvgIcon name="outlay" :size="20" color="white" />
           </div>
           <span class="action-text">记支出</span>
         </div>
         <div class="action-item" @click="quickAction('transfer')">
           <div class="action-icon transfer-bg">
-            <SvgIcon name="transfer" :size="20" color="white" />
+            <SvgIcon name="send" :size="20" color="white" />
           </div>
           <span class="action-text">转账</span>
         </div>
@@ -277,12 +277,15 @@ $spacing-xl: 20px;
 $spacing-xxl: 24px;
 
 .home-page {
-  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   background: $bg-color;
   position: relative;
   width: 100%;
+  height: 100%;
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .custom-navbar {
@@ -345,11 +348,12 @@ $spacing-xxl: 24px;
   bottom: 0;
   pointer-events: none;
   z-index: -1;
+  overflow: hidden; // 防止子元素溢出
 
   .decoration-1 {
     position: absolute;
-    top: -96px;
-    left: -96px;
+    top: -48px;
+    left: -48px;
     width: 288px;
     height: 288px;
     border-radius: 50%;
@@ -360,8 +364,8 @@ $spacing-xxl: 24px;
 
   .decoration-2 {
     position: absolute;
-    bottom: -96px;
-    right: -96px;
+    bottom: -48px;
+    right: -48px;
     width: 288px;
     height: 288px;
     border-radius: 50%;
@@ -374,6 +378,10 @@ $spacing-xxl: 24px;
 .content-area {
   flex: 1;
   padding: 0 $spacing-xl;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 140px); // 减去导航栏和底部tab的高度
+  -webkit-overflow-scrolling: touch; // iOS平滑滚动
 }
 
 .card {

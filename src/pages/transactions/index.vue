@@ -4,83 +4,88 @@
       <h1 class="page-title">流水记录</h1>
       <div class="header-actions">
         <a-button type="text" size="large" @click="showSearchModal = true">
-          <SvgIcon name="search" :size="20" color="#667085" />
+          <SvgIcon name="magnifier" :size="20" color="#667085" />
         </a-button>
         <a-button type="text" size="large" @click="showFilterModal = true">
-          <SvgIcon name="filter" :size="20" color="#667085" />
+          <SvgIcon name="filter-alt" :size="20" color="#667085" />
         </a-button>
       </div>
     </div>
 
-    <!-- 筛选条件 -->
-    <div class="filter-section">
-      <a-segmented
-        v-model:value="filterType"
-        :options="filterOptions"
-        @change="handleFilterChange"
-      />
-    </div>
+    <div class="content-scrollable">
+      <!-- 筛选条件 -->
+      <div class="filter-section">
+        <a-segmented
+          v-model:value="filterType"
+          :options="filterOptions"
+          @change="handleFilterChange"
+        />
+      </div>
 
-    <!-- 统计汇总 -->
-    <div class="summary-card" v-if="filteredTransactions.length > 0">
-      <div class="summary-item">
-        <span class="summary-label">总收入</span>
-        <span class="summary-value income">+¥{{ formatAmount(totalIncome) }}</span>
-      </div>
-      <div class="summary-divider"></div>
-      <div class="summary-item">
-        <span class="summary-label">总支出</span>
-        <span class="summary-value expense">-¥{{ formatAmount(totalExpense) }}</span>
-      </div>
-      <div class="summary-divider"></div>
-      <div class="summary-item">
-        <span class="summary-label">结余</span>
-        <span class="summary-value" :class="totalBalance >= 0 ? 'income' : 'expense'">
-          {{ totalBalance >= 0 ? '+' : '' }}¥{{ formatAmount(Math.abs(totalBalance)) }}
-        </span>
-      </div>
-    </div>
-
-    <!-- 交易列表 -->
-    <div class="transactions-list" v-if="groupedTransactions.length > 0">
-      <div
-        v-for="group in groupedTransactions"
-        :key="group.date"
-        class="transaction-group"
-      >
-        <div class="group-header">
-          <span class="group-date">{{ group.dateLabel }}</span>
-          <span class="group-amount" :class="group.dayTotal >= 0 ? 'income' : 'expense'">
-            {{ group.dayTotal >= 0 ? '+' : '' }}¥{{ formatAmount(Math.abs(group.dayTotal)) }}
+      <!-- 统计汇总 -->
+      <div class="summary-card" v-if="filteredTransactions.length > 0">
+        <div class="summary-item">
+          <span class="summary-label">总收入</span>
+          <span class="summary-value income">+¥{{ formatAmount(totalIncome) }}</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-item">
+          <span class="summary-label">总支出</span>
+          <span class="summary-value expense">-¥{{ formatAmount(totalExpense) }}</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-item">
+          <span class="summary-label">结余</span>
+          <span class="summary-value" :class="totalBalance >= 0 ? 'income' : 'expense'">
+            {{ totalBalance >= 0 ? '+' : '' }}¥{{ formatAmount(Math.abs(totalBalance)) }}
           </span>
         </div>
+      </div>
+
+      <!-- 交易列表 -->
+      <div class="transactions-list" v-if="groupedTransactions.length > 0">
         <div
-          v-for="transaction in group.transactions"
-          :key="transaction.id"
-          class="transaction-item"
-          @click="handleTransactionClick(transaction)"
+          v-for="group in groupedTransactions"
+          :key="group.date"
+          class="transaction-group"
         >
-          <div class="transaction-icon" :class="transaction.type" :style="{ background: transaction.categoryColor }">
-            <SvgIcon :name="transaction.categoryIcon" :size="20" color="white" />
+          <div class="group-header">
+            <span class="group-date">{{ group.dateLabel }}</span>
+            <span class="group-amount" :class="group.dayTotal >= 0 ? 'income' : 'expense'">
+              {{ group.dayTotal >= 0 ? '+' : '' }}¥{{ formatAmount(Math.abs(group.dayTotal)) }}
+            </span>
           </div>
-          <div class="transaction-info">
-            <div class="transaction-title">{{ transaction.title }}</div>
-            <div class="transaction-detail">
-              {{ transaction.time }} · {{ transaction.accountName }} · {{ transaction.categoryName }}
+          <div
+            v-for="transaction in group.transactions"
+            :key="transaction.id"
+            class="transaction-item"
+            @click="handleTransactionClick(transaction)"
+          >
+            <div class="transaction-icon" :class="transaction.type" :style="{ background: transaction.categoryColor }">
+              <SvgIcon :name="transaction.categoryIcon" :size="20" color="white" />
             </div>
-          </div>
-          <div class="transaction-amount" :class="transaction.type">
-            {{ transaction.type === 'expense' ? '-' : '+' }}¥{{ formatAmount(transaction.amount) }}
+            <div class="transaction-info">
+              <div class="transaction-title">{{ transaction.title }}</div>
+              <div class="transaction-detail">
+                {{ transaction.time }} · {{ transaction.accountName }} · {{ transaction.categoryName }}
+              </div>
+            </div>
+            <div class="transaction-amount" :class="transaction.type">
+              {{ transaction.type === 'expense' ? '-' : '+' }}¥{{ formatAmount(transaction.amount) }}
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- 空状态 -->
-    <div v-else class="empty-state">
-      <div class="empty-icon">📝</div>
-      <div class="empty-text">暂无交易记录</div>
-      <div class="empty-subtitle">点击下方"+"按钮开始记账</div>
+      <!-- 空状态 -->
+      <div v-else class="empty-state">
+        <div class="empty-icon">📝</div>
+        <div class="empty-text">暂无交易记录</div>
+        <div class="empty-subtitle">点击下方"+"按钮开始记账</div>
+      </div>
+
+      <!-- 底部安全距离 -->
+      <div class="safe-bottom"></div>
     </div>
 
     <!-- 搜索弹窗 -->
@@ -97,7 +102,7 @@
         @input="handleSearch"
       >
         <template #prefix>
-          <SvgIcon name="search" :size="16" color="#999" />
+          <SvgIcon name="magnifier" :size="16" color="#999" />
         </template>
       </a-input>
     </a-modal>
@@ -142,6 +147,10 @@
             v-model:value="filterConfig.dateRange"
             style="width: 100%"
             format="YYYY-MM-DD"
+            placeholder="['开始日期', '结束日期']"
+            :mode="isMobile.value ? ['date', 'date'] : undefined"
+            :size="isMobile.value ? 'small' : 'middle'"
+            :getPopupContainer="(triggerNode) => triggerNode.parentElement"
           />
         </div>
       </div>
@@ -333,6 +342,9 @@ const totalBalance = computed(() => totalIncome.value - totalExpense.value)
 const categories = computed(() => transactionStore.categories)
 const accounts = computed(() => transactionStore.accounts)
 
+// 移动端检测
+const isMobile = computed(() => window.innerWidth <= 480)
+
 // 方法
 const getDateLabel = (date) => {
   const now = new Date()
@@ -412,20 +424,35 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .transactions-page {
-  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   background: #F5F7FB;
-  padding: 20px 20px 100px;
   width: 100%;
+  height: 100%;
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow: hidden;
+  padding: 20px 20px 0;
 
   @media (max-width: 768px) {
-    padding: 16px 16px 100px;
+    padding: 16px 16px 0;
   }
 
   @media (max-width: 480px) {
-    padding: 12px 12px 100px;
+    padding: 12px 12px 0;
   }
+}
+
+.content-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 100px; // 底部tab安全距离
+  -webkit-overflow-scrolling: touch; // iOS平滑滚动
+}
+
+.safe-bottom {
+  height: 20px;
 }
 
 .page-header {
@@ -704,32 +731,6 @@ onMounted(() => {
 
     :deep(.ant-btn) {
       border-radius: 8px;
-    }
-  }
-}
-
-// Ant Design Modal 样式覆盖
-:deep(.ant-modal) {
-  .ant-modal-content {
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .ant-modal-header {
-    background: linear-gradient(135deg, #64CFB3, #6FD8D8);
-    border-bottom: none;
-
-    .ant-modal-title {
-      color: white;
-      font-weight: 600;
-    }
-  }
-
-  .ant-modal-close {
-    color: white;
-
-    &:hover {
-      color: rgba(255, 255, 255, 0.8);
     }
   }
 }

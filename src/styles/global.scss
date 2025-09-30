@@ -1,6 +1,7 @@
 // 导入变量和图标字体
 @import './variables.scss';
 @import './iconfont.scss';
+@import './ant-design-override.scss';
 
 // 全局样式重置
 * {
@@ -14,14 +15,24 @@ html, body {
   font-family: 'PingFang SC', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   color: $text-primary;
   line-height: 1.5;
-  width: 100%;
+  width: 100vw; // 固定视口宽度
+  height: 100vh; // 固定视口高度
   min-height: 100vh;
-  overflow-x: hidden;
+  max-width: 100vw; // 确保不超过视口宽度
+  max-height: 100vh; // 确保不超过视口高度
+  overflow: hidden; // 完全禁止滚动
+  position: fixed; // 固定定位防止移动
+  top: 0;
+  left: 0;
 }
 
 #app {
-  width: 100%;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw; // 确保不超过视口宽度
+  max-height: 100vh; // 确保不超过视口高度
+  overflow: hidden; // 防止滚动
+  position: relative;
 }
 
 // 响应式设计

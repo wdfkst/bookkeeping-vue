@@ -1,5 +1,19 @@
 <template>
-  <svg :class="['svg-icon', className]" :style="iconStyle" viewBox="0 0 24 24">
+  <!-- PNG图标 -->
+  <img
+    v-if="isPngIcon"
+    :src="iconSrc"
+    :class="['icon-img', className]"
+    :style="iconStyle"
+    :alt="name"
+  />
+  <!-- SVG图标 -->
+  <svg
+    v-else
+    :class="['svg-icon', className]"
+    :style="iconStyle"
+    viewBox="0 0 24 24"
+  >
     <component :is="iconComponent" />
   </svg>
 </template>
@@ -31,6 +45,83 @@ const iconStyle = computed(() => ({
   height: typeof props.size === 'number' ? `${props.size}px` : props.size,
   color: props.color
 }))
+
+// PNG图标映射
+const pngIcons = {
+  // 主要功能图标
+  'home-main': '/img/home.png',
+  'bag-main': '/img/bag.png',
+  'chart-main': '/img/chart.png',
+  'profile-main': '/img/profile.png',
+
+  // 功能图标
+  'activity': '/img/Activity.png',
+  'add': '/img/Add.png',
+  'arrow': '/img/Arrow.png',
+  'arrow-alt': '/img/Arrow-1.png',
+  'bag': '/img/Bag-1.png',
+  'bookmark': '/img/Bookmark.png',
+  'buy': '/img/Buy.png',
+  'calendar-alt': '/img/Calendar.png',
+  'camera': '/img/Camera.png',
+  'chat': '/img/Chat.png',
+  'clock': '/img/Clock.png',
+  'close-alt': '/img/Close.png',
+  'danger': '/img/Danger.png',
+  'discount': '/img/Discount.png',
+  'discovery': '/img/Discovery.png',
+  'document-alt': '/img/Document.png',
+  'edit-alt': '/img/Edit.png',
+  'filter-alt': '/img/Filter.png',
+  'folder': '/img/Folder.png',
+  'gallery': '/img/Gallery.png',
+  'game': '/img/Game.png',
+  'graph': '/img/Graph.png',
+  'heart': '/img/Heart.png',
+  'info-alt': '/img/Info.png',
+  'info-circle': '/img/Info-1.png',
+  'location': '/img/Location.png',
+  'locations': '/img/Locations.png',
+  'lock': '/img/Lock.png',
+  'lock-alt': '/img/Lock-1.png',
+  'magnifier': '/img/Magnifier.png',
+  'menu': '/img/Menu.png',
+  'menu-alt': '/img/Menu-1.png',
+  'message': '/img/Message.png',
+  'messages': '/img/Messages.png',
+  'notification': '/img/Notification.png',
+  'outlay': '/img/outlay.png',
+  'paper-plus': '/img/Paper Plus.png',
+  'paper': '/img/Paper.png',
+  'pencil': '/img/Pencil.png',
+  'picture': '/img/Picture.png',
+  'play': '/img/Play.png',
+  'search-alt': '/img/Search.png',
+  'security': '/img/Security.png',
+  'send': '/img/Send.png',
+  'setting': '/img/Setting.png',
+  'share': '/img/Share.png',
+  'shield': '/img/Shield.png',
+  'show': '/img/Show.png',
+  'star': '/img/Star.png',
+  'star-alt': '/img/Star-1.png',
+  'suitcase': '/img/Suitcase.png',
+  'tick': '/img/Tick.png',
+  'trash': '/img/Trash.png',
+  'video': '/img/Video.png',
+  'volume': '/img/Volume.png',
+  'wallet-alt': '/img/Wallet.png'
+}
+
+// 判断是否为PNG图标
+const isPngIcon = computed(() => {
+  return pngIcons.hasOwnProperty(props.name)
+})
+
+// PNG图标源地址
+const iconSrc = computed(() => {
+  return pngIcons[props.name]
+})
 
 const iconComponent = computed(() => {
   const icons = {
@@ -249,5 +340,16 @@ const iconComponent = computed(() => {
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.icon-img {
+  display: inline-block;
+  vertical-align: middle;
+  object-fit: contain;
+
+  // 如果需要保持图标颜色，可以使用filter
+  &.colorable {
+    filter: brightness(0) saturate(100%);
+  }
 }
 </style>
